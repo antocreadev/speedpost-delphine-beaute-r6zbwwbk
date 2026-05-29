@@ -24,7 +24,7 @@
 <style>
   :root{
     --bg:#F2F0EF; --bg-soft:#FBFAF9; --bg-deep:#E9E7E5;
-    --ink:#2E3A36; --ink-2:#6E7A74;
+    --ink:#2E3A36; --ink-2:#515D57;
     --sage:#9AAE9E; --sage-soft:#C3D0C5;
     --gold:#B89B6E; --gold-light:#C9A98A;
   }
@@ -65,7 +65,7 @@
   /* halo softbox récurrent */
   .halo{
     position:absolute; pointer-events:none; z-index:0;
-    background:radial-gradient(closest-side, rgba(154,174,158,.32), rgba(154,174,158,.10) 55%, transparent 72%);
+    background:radial-gradient(closest-side, rgba(154,174,158,.18), rgba(154,174,158,.06) 55%, transparent 72%);
     filter:blur(2px);
     animation:halopulse 6.5s ease-in-out infinite;
   }
@@ -75,7 +75,7 @@
   }
 
   /* glow dewy + sweep satiné sur le nom et h2 */
-  .dewy{ text-shadow:0 0 24px rgba(154,174,158,.35); }
+  .dewy{ text-shadow:0 0 10px rgba(154,174,158,.18); }
   .sweep{ position:relative; overflow:hidden; display:inline-block; }
   .sweep::after{
     content:""; position:absolute; inset:0;
@@ -101,22 +101,11 @@
     content:""; position:absolute; inset:0; pointer-events:none;
     box-shadow:inset 0 0 60px rgba(46,58,54,.16), inset 0 0 18px rgba(46,58,54,.08);
   }
-  .medallion .veil{
-    position:absolute; inset:0; pointer-events:none; z-index:2;
-    background:linear-gradient(180deg, rgba(195,208,197,.55), rgba(154,174,158,.35));
-    opacity:.0; transition:opacity .6s ease;
-  }
-  .js-ready .medallion .veil{ opacity:.45; }
-  .js-ready .medallion.revealed .veil{ opacity:0; }
+  .medallion .veil{ display:none; }
   .medallion:hover img{ transform:scale(1.04); filter:brightness(1.04) saturate(1.08); }
 
-  /* voile de lumière par section */
-  .light-veil{
-    position:absolute; inset:0; z-index:5; pointer-events:none;
-    background:linear-gradient(180deg, rgba(251,250,249,.96) 0%, rgba(195,208,197,.6) 45%, rgba(242,240,239,.9) 100%);
-    transform:translateY(0); transition:transform .65s cubic-bezier(.22,.61,.36,1), opacity .65s ease;
-  }
-  .js-ready .reveal-wrap.opened .light-veil{ transform:translateY(-101%); opacity:0; }
+  /* voile de lumière par section : neutralisé (illisibilité si JS lent) */
+  .light-veil{ display:none; }
 
   /* card rituel */
   .rite{
@@ -177,12 +166,8 @@
   .js-ready [data-reveal]{opacity:0; transform:translateY(16px); animation:autoreveal .5s ease-out .35s forwards;}
   @keyframes autoreveal{ to{ opacity:1; transform:translateY(0); } }
 
-  /* hero veil de chargement */
-  #loadveil{
-    position:fixed; inset:0; z-index:60; pointer-events:none;
-    background:linear-gradient(180deg, rgba(251,250,249,.99) 0%, rgba(195,208,197,.92) 50%, rgba(242,240,239,.99) 100%);
-    transform:translateY(0);
-  }
+  /* hero veil de chargement : retiré (cachait toute la page au load) */
+  #loadveil{ display:none !important; }
 
   @media (prefers-reduced-motion: reduce){
     .js-ready [data-reveal]{opacity:1 !important; transform:none !important; animation:none !important;}
@@ -224,7 +209,6 @@
 
 <body class="antialiased">
 
-<div id="loadveil"></div>
 <div id="lightspot"></div>
 
 <!-- NAV -->
@@ -566,30 +550,14 @@
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let animate, inView;
+  let inView;
   try {
-    ({ animate, inView } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'));
+    ({ inView } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'));
   } catch(e) { /* filet CSS prend le relais */ }
 
-  // chargement : retrait du voile de lumière
-  const loadveil = document.getElementById('loadveil');
+  // micro-geste : balayage satiné sur le nom (contenu déjà lisible, aucun voile)
   const heroName = document.getElementById('heroname');
-  function lift(){
-    if (loadveil){
-      if (reduce){ loadveil.style.display='none'; }
-      else {
-        loadveil.animate(
-          [{ transform:'translateY(0)' },{ transform:'translateY(-101%)' }],
-          { duration:1100, easing:'cubic-bezier(.22,.61,.36,1)', fill:'forwards' }
-        );
-        setTimeout(()=>{ loadveil.style.display='none'; }, 1150);
-      }
-    }
-    document.querySelectorAll('.hero-medallion').forEach(m=>m.classList.add('revealed'));
-    setTimeout(()=>{ heroName && heroName.classList.add('swept'); }, reduce?0:650);
-  }
-  window.addEventListener('load', lift, { once:true });
-  setTimeout(lift, 1600); // filet si load déjà passé
+  setTimeout(()=>{ heroName && heroName.classList.add('swept'); }, reduce?0:500);
 
   // scroll natif : ancres en smooth scroll standard (pas de hijack)
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -599,25 +567,10 @@
     });
   });
 
-  if (inView && animate){
-    // entrées scroll
-    inView('[data-reveal]', (el)=>{
-      animate(el, { opacity:[0,1], transform:['translateY(16px)','translateY(0)'] },
-              { duration:0.55, easing:[0.2,0.7,0.2,1] });
-    }, { amount:0.15 });
-
-    // voile de lumière par section + medaillons + sweep h2
-    inView('.reveal-wrap', (el)=>{
-      el.classList.add('opened');
-      el.querySelectorAll('.section-medallion').forEach(m=>m.classList.add('revealed'));
-      el.querySelectorAll('.sweep').forEach(s=>{ setTimeout(()=>s.classList.add('swept'), 250); });
-    }, { amount:0.2 });
-  } else {
-    // sans Motion : ouvrir tout
-    document.querySelectorAll('.reveal-wrap').forEach(w=>{
-      w.classList.add('opened');
-      w.querySelectorAll('.section-medallion').forEach(m=>m.classList.add('revealed'));
-    });
+  // Les entrées [data-reveal] sont gérées par l'animation CSS autoreveal (robuste, sans JS).
+  // Motion ne sert qu'au micro-geste de balayage satiné des titres au scroll.
+  if (inView){
+    inView('.sweep', (el)=>{ setTimeout(()=>el.classList.add('swept'), 120); }, { amount:0.4 });
   }
 
   // nav hide/show + solid
