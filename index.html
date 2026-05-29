@@ -566,10 +566,9 @@
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let animate, inView, scroll, Lenis;
+  let animate, inView;
   try {
-    ({ animate, inView, scroll } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'));
-    Lenis = (await import('https://cdn.jsdelivr.net/npm/lenis@1.1.13/+esm')).default;
+    ({ animate, inView } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'));
   } catch(e) { /* filet CSS prend le relais */ }
 
   // chargement : retrait du voile de lumière
@@ -592,17 +591,13 @@
   window.addEventListener('load', lift, { once:true });
   setTimeout(lift, 1600); // filet si load déjà passé
 
-  if (Lenis && !reduce){
-    const lenis = new Lenis({ lerp:0.08 });
-    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t){ e.preventDefault(); lenis.scrollTo(t, { offset:-70 }); }
-      });
+  // scroll natif : ancres en smooth scroll standard (pas de hijack)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t){ e.preventDefault(); t.scrollIntoView({ behavior: reduce?'auto':'smooth', block:'start' }); }
     });
-  }
+  });
 
   if (inView && animate){
     // entrées scroll
@@ -617,13 +612,6 @@
       el.querySelectorAll('.section-medallion').forEach(m=>m.classList.add('revealed'));
       el.querySelectorAll('.sweep').forEach(s=>{ setTimeout(()=>s.classList.add('swept'), 250); });
     }, { amount:0.2 });
-
-    // parallax doux médaillon hero
-    const hero = document.querySelector('#hero-image');
-    if (hero && scroll && !reduce){
-      scroll(animate(hero, { transform:['translateY(-3%)','translateY(3%)'] }, { easing:'linear' }),
-             { target: hero.closest('section'), offset:['start end','end start'] });
-    }
   } else {
     // sans Motion : ouvrir tout
     document.querySelectorAll('.reveal-wrap').forEach(w=>{
