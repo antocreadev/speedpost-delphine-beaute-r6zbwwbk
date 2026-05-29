@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Delphine Beauté : Institut de beauté à Bastia</title>
+<meta name="description" content="Delphine Beauté, votre écrin de soin à la Villa St Joseph, Route Royale à Bastia. Une praticienne, toute son attention. Note 4,9/5. Rendez-vous au 06 66 63 88 21."/>
+<meta name="theme-color" content="#F2F0EF"/>
+<link rel="canonical" href="https://antocreadev.github.io/speedpost-delphine-beaute-r6zbwwbk/"/>
+
+<meta property="og:type" content="business.business"/>
+<meta property="og:title" content="Delphine Beauté : Institut de beauté à Bastia"/>
+<meta property="og:description" content="Votre écrin de soin à la Villa St Joseph, à l'entrée de Bastia. Une praticienne, toute son attention. Note 4,9/5."/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:image" content="./assets/images/soin-visage.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Manrope:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="./tailwind.css"/>
+
+<style>
+  :root{
+    --bg:#F2F0EF; --bg-soft:#FBFAF9; --bg-deep:#E9E7E5;
+    --ink:#2E3A36; --ink-2:#6E7A74;
+    --sage:#9AAE9E; --sage-soft:#C3D0C5;
+    --gold:#B89B6E; --gold-light:#C9A98A;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Manrope',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -10%, #FBFAF9 0%, #F2F0EF 55%, #E9E7E5 100%);
+    background-attachment:fixed;
+  }
+  .font-display{font-family:'Tenor Sans',sans-serif;}
+  .font-script{font-family:'Cormorant Garamond',serif;}
+
+  /* grain crème ultra-subtil */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    opacity:.04; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .eyebrow{
+    font-family:'Tenor Sans',sans-serif; text-transform:uppercase;
+    letter-spacing:.32em; font-size:.72rem; color:var(--ink-2);
+  }
+  @media(min-width:768px){ .eyebrow{font-size:.8rem;} }
+
+  .h2{
+    font-family:'Tenor Sans',sans-serif; text-transform:uppercase;
+    letter-spacing:.14em; line-height:1.15;
+    font-size:clamp(1.6rem,4.5vw,2.6rem);
+  }
+  .h3{
+    font-family:'Tenor Sans',sans-serif; letter-spacing:.08em;
+    font-size:clamp(1.15rem,2.5vw,1.45rem);
+  }
+
+  /* halo softbox récurrent */
+  .halo{
+    position:absolute; pointer-events:none; z-index:0;
+    background:radial-gradient(closest-side, rgba(154,174,158,.32), rgba(154,174,158,.10) 55%, transparent 72%);
+    filter:blur(2px);
+    animation:halopulse 6.5s ease-in-out infinite;
+  }
+  @keyframes halopulse{
+    0%,100%{transform:scale(1); opacity:.85;}
+    50%{transform:scale(1.045); opacity:1;}
+  }
+
+  /* glow dewy + sweep satiné sur le nom et h2 */
+  .dewy{ text-shadow:0 0 24px rgba(154,174,158,.35); }
+  .sweep{ position:relative; overflow:hidden; display:inline-block; }
+  .sweep::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.6) 50%, transparent 70%);
+    transform:translateX(-120%);
+  }
+  .js-ready .sweep.swept::after{ animation:satinsweep .95s ease-out forwards; }
+  @keyframes satinsweep{ to{ transform:translateX(120%); } }
+
+  /* filet or à terminaisons pastille (étiquette de flacon) */
+  .rule-gold{ display:flex; align-items:center; gap:.6rem; }
+  .rule-gold .line{ height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); flex:1; }
+  .rule-gold .dot{ width:6px; height:6px; border-radius:999px; background:var(--gold); flex:none; }
+
+  /* medaillon image vignetté + voile sauge qui se retire */
+  .medallion{ position:relative; overflow:hidden; }
+  .medallion img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:brightness(.99) saturate(1.04) contrast(1.02);
+    transition:transform .9s cubic-bezier(.22,.61,.36,1), filter .6s ease;
+  }
+  .medallion::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    box-shadow:inset 0 0 60px rgba(46,58,54,.16), inset 0 0 18px rgba(46,58,54,.08);
+  }
+  .medallion .veil{
+    position:absolute; inset:0; pointer-events:none; z-index:2;
+    background:linear-gradient(180deg, rgba(195,208,197,.55), rgba(154,174,158,.35));
+    opacity:.0; transition:opacity .6s ease;
+  }
+  .js-ready .medallion .veil{ opacity:.45; }
+  .js-ready .medallion.revealed .veil{ opacity:0; }
+  .medallion:hover img{ transform:scale(1.04); filter:brightness(1.04) saturate(1.08); }
+
+  /* voile de lumière par section */
+  .light-veil{
+    position:absolute; inset:0; z-index:5; pointer-events:none;
+    background:linear-gradient(180deg, rgba(251,250,249,.96) 0%, rgba(195,208,197,.6) 45%, rgba(242,240,239,.9) 100%);
+    transform:translateY(0); transition:transform .65s cubic-bezier(.22,.61,.36,1), opacity .65s ease;
+  }
+  .js-ready .reveal-wrap.opened .light-veil{ transform:translateY(-101%); opacity:0; }
+
+  /* card rituel */
+  .rite{
+    position:relative; background:rgba(251,250,249,.55);
+    border:1px solid rgba(154,174,158,.55); border-radius:6px;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .rite:hover{
+    transform:translateY(-3px); border-color:var(--gold);
+    box-shadow:0 12px 32px rgba(46,58,54,.10); background:rgba(251,250,249,.85);
+  }
+  .rite .num{
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    color:var(--gold); opacity:.7; font-size:1.6rem; line-height:1;
+  }
+
+  /* lien souligné or */
+  .ul-gold{ position:relative; }
+  .ul-gold::after{
+    content:""; position:absolute; left:0; bottom:-3px; height:1px; width:100%;
+    background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+  }
+  .ul-gold:hover::after{ transform:scaleX(1); }
+
+  /* CTA bordure or */
+  .btn-gold{
+    display:inline-flex; align-items:center; gap:.6rem;
+    font-family:'Manrope',sans-serif; font-weight:500; letter-spacing:.02em;
+    border:1px solid var(--gold); color:var(--ink); background:rgba(251,250,249,.5);
+    padding:.85rem 1.6rem; border-radius:999px;
+    transition:background .3s ease, color .3s ease, box-shadow .3s ease, transform .25s ease;
+  }
+  .btn-gold:hover{ background:var(--gold); color:#FBFAF9; box-shadow:0 10px 28px rgba(184,155,110,.28); transform:translateY(-2px); }
+
+  /* scrim conforme règle contraste pour texte sur image */
+  .scrim{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(20,28,24,.45) 0%, rgba(20,28,24,.12) 24%, transparent 46%, transparent 58%, rgba(20,28,24,.34) 84%, rgba(20,28,24,.66) 100%),
+      radial-gradient(60% 45% at 50% 52%, rgba(20,28,24,.30) 0%, transparent 70%);
+  }
+  .on-photo, .on-photo *{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.45), 0 2px 18px rgba(0,0,0,.35); }
+
+  /* spot de lumière suiveur */
+  #lightspot{
+    position:fixed; top:0; left:0; width:520px; height:520px; margin:-260px 0 0 -260px;
+    border-radius:999px; pointer-events:none; z-index:2; opacity:0;
+    background:radial-gradient(closest-side, rgba(154,174,158,.16), transparent 70%);
+    transition:opacity .8s ease; mix-blend-mode:multiply;
+  }
+
+  /* nav */
+  #nav{ transition:transform .4s ease, background .4s ease, box-shadow .4s ease; }
+  #nav.hide{ transform:translateY(-110%); }
+  #nav.solid{ background:rgba(242,240,239,.82); backdrop-filter:blur(10px); box-shadow:0 1px 0 rgba(154,174,158,.3); }
+
+  /* reveals robustes */
+  .js-ready [data-reveal]{opacity:0; transform:translateY(16px); animation:autoreveal .5s ease-out .35s forwards;}
+  @keyframes autoreveal{ to{ opacity:1; transform:translateY(0); } }
+
+  /* hero veil de chargement */
+  #loadveil{
+    position:fixed; inset:0; z-index:60; pointer-events:none;
+    background:linear-gradient(180deg, rgba(251,250,249,.99) 0%, rgba(195,208,197,.92) 50%, rgba(242,240,239,.99) 100%);
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .js-ready [data-reveal]{opacity:1 !important; transform:none !important; animation:none !important;}
+    .light-veil, .medallion .veil, #loadveil{ display:none !important; }
+    .halo{ animation:none !important; }
+    #lightspot{ display:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BeautySalon",
+  "name":"Delphine Beauté",
+  "description":"Institut de beauté à Bastia. Soins du visage, microdermabrasion, épilations, modelages du corps, beauté des mains et des pieds, regard et maquillage, dans le cadre intimiste de la Villa St Joseph.",
+  "image":"https://antocreadev.github.io/speedpost-delphine-beaute-r6zbwwbk/assets/images/soin-visage.jpg",
+  "url":"https://antocreadev.github.io/speedpost-delphine-beaute-r6zbwwbk/",
+  "telephone":"+33666638821",
+  "priceRange":"€€",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Villa St Joseph, Chemin de Marinacce, Route Royale",
+    "addressLocality":"Bastia",
+    "postalCode":"20600",
+    "addressRegion":"Haute-Corse",
+    "addressCountry":"FR"
+  },
+  "geo":{ "@type":"GeoCoordinates", "latitude":42.6834044, "longitude":9.424087199999999 },
+  "openingHoursSpecification":[{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens":"09:00","closes":"18:00"
+  }],
+  "aggregateRating":{ "@type":"AggregateRating", "ratingValue":"4.9", "reviewCount":"17", "bestRating":"5" }
+}
+</script>
+</head>
+
+<body class="antialiased">
+
+<div id="loadveil"></div>
+<div id="lightspot"></div>
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 inset-x-0 z-40">
+  <div class="mx-auto max-w-6xl px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display tracking-[.16em] text-[.92rem] uppercase text-ink">Delphine Beauté</a>
+    <a href="tel:+33666638821" class="btn-gold text-[.78rem] !py-2 !px-4 md:!py-2.5 md:!px-5">
+      <span class="hidden sm:inline">Prendre rendez-vous</span><span class="sm:hidden">RDV</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="relative min-h-[92vh] flex items-center justify-center px-5 pt-24 pb-16 overflow-hidden">
+    <div class="halo" style="width:min(820px,120vw); height:min(820px,120vw); top:-12%; left:50%; transform:translateX(-50%);"></div>
+    <div class="relative z-10 mx-auto max-w-3xl text-center">
+      <p class="eyebrow" data-reveal>Institut de beauté · Bastia</p>
+
+      <h1 class="mt-6">
+        <span id="heroname" class="sweep font-script italic dewy text-ink block"
+              style="font-weight:300; letter-spacing:-0.01em; font-size:clamp(3rem,11vw,7rem); line-height:.95;">Delphine&nbsp;Beauté</span>
+      </h1>
+      <p class="mt-3 font-script italic text-ink-2" style="font-size:clamp(1.1rem,3vw,1.6rem);" data-reveal>votre écrin de soin</p>
+
+      <div class="rule-gold mx-auto mt-7 max-w-[220px]" data-reveal><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+
+      <p class="mt-7 mx-auto max-w-xl text-[1.05rem] leading-relaxed text-ink/90" data-reveal>
+        Votre écrin de soin à la Villa St Joseph, à l'entrée de Bastia. Un lieu, une praticienne, toute son attention.
+      </p>
+
+      <!-- médaillon hero -->
+      <div class="relative mx-auto mt-10 w-[200px] h-[200px] md:w-[240px] md:h-[240px]" data-reveal>
+        <div class="halo" style="inset:-22%;"></div>
+        <div class="medallion hero-medallion relative w-full h-full rounded-full">
+          <img src="./assets/images/soin-visage.jpg" alt="Soin du visage en institut, ambiance lumineuse douce" loading="eager" fetchpriority="high" id="hero-image"/>
+          <span class="veil"></span>
+        </div>
+      </div>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
+        <a href="tel:+33666638821" class="btn-gold">
+          <span aria-hidden="true">✦</span> Prendre rendez-vous : 06 66 63 88 21
+        </a>
+        <a href="#ecrin" class="font-display tracking-[.08em] text-[.85rem] uppercase text-ink ul-gold">Découvrir l'écrin</a>
+      </div>
+
+      <div class="mt-8 inline-flex items-center gap-2 text-[.78rem] tracking-[.12em] uppercase text-ink-2" data-reveal>
+        <span class="font-script italic text-[1.35rem] not-italic" style="font-style:italic; color:var(--gold);">4,9/5</span>
+        <span class="w-px h-3 bg-[color:var(--gold)]/50"></span>
+        <span>17 avis Google</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTE -->
+  <section class="relative py-24 md:py-36 px-5 overflow-hidden">
+    <div class="halo" style="width:min(680px,110vw); height:480px; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
+    <div class="reveal-wrap relative max-w-3xl mx-auto text-center">
+      <div class="light-veil"></div>
+      <p class="eyebrow mb-6" data-reveal>Notre promesse</p>
+      <p class="font-display tracking-[.12em] text-ink leading-[1.5]" style="font-size:clamp(1.5rem,4.6vw,2.5rem);" data-reveal>
+        Ici, on ne vous enchaîne pas. On prend le temps de vous.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRATICIENNE -->
+  <section id="ecrin" class="relative py-16 md:py-24 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+      <div class="light-veil"></div>
+      <div class="md:col-span-5 relative" data-reveal>
+        <div class="halo" style="inset:-10% -6%;"></div>
+        <div class="medallion section-medallion relative aspect-[2/3] rounded-[10px] max-w-[360px] mx-auto">
+          <img src="./assets/images/mains-praticienne.jpg" alt="Mains de la praticienne pendant un soin esthétique"/>
+          <span class="veil"></span>
+        </div>
+      </div>
+      <div class="md:col-span-7" data-reveal>
+        <p class="eyebrow">Votre praticienne</p>
+        <h2 class="h2 mt-3 sweep dewy">Delphine, rien que pour vous</h2>
+        <div class="rule-gold mt-5 max-w-[180px]"><span class="dot"></span><span class="line"></span></div>
+        <p class="mt-6 text-[1.05rem] leading-relaxed text-ink/90">
+          À la Villa St Joseph, sur la Route Royale, Delphine vous reçoit dans un cadre résidentiel calme, loin de l'agitation des centres commerciaux. Une seule praticienne, un seul rendez-vous à la fois : toute son attention se porte sur votre peau et sur votre bien-être.
+        </p>
+        <p class="mt-4 text-[1.05rem] leading-relaxed text-ink/90">
+          De la première rencontre au suivi de vos soins, la relation se construit dans la confiance. C'est cette écoute personnelle, doublée d'un vrai savoir-faire, que ses clientes citent dans leurs avis, et qui fait revenir.
+        </p>
+        <a href="tel:+33666638821" class="mt-7 inline-block font-display tracking-[.08em] text-[.85rem] uppercase text-ink ul-gold">Réserver votre moment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RITUELS -->
+  <section id="rituels" class="relative py-16 md:py-24 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-6xl mx-auto">
+      <div class="light-veil"></div>
+      <div class="text-center max-w-2xl mx-auto relative">
+        <div class="halo" style="width:min(520px,90vw); height:300px; top:-30%; left:50%; transform:translateX(-50%);"></div>
+        <p class="eyebrow relative" data-reveal>La carte des soins</p>
+        <h2 class="h2 mt-3 relative sweep dewy" data-reveal>Vos rituels de beauté</h2>
+        <p class="mt-5 relative text-[1.02rem] leading-relaxed text-ink-2" data-reveal>
+          Chaque soin se compose avec vous, selon votre peau et vos envies. Sur rendez-vous, soins personnalisés.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- I -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Soins du visage</h3><span class="num">I</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Hydratation, éclat, anti-âge. Un soin sur mesure pour révéler une peau reposée et lumineuse.</p>
+        </article>
+        <!-- II -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Microdermabrasion &amp; éclat</h3><span class="num">II</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Un resurfaçage doux qui lisse le grain de peau et ravive la fraîcheur du teint.</p>
+        </article>
+        <!-- III -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Épilations</h3><span class="num">III</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Des gestes précis et respectueux, pour une peau nette et confortable au quotidien.</p>
+        </article>
+        <!-- IV -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Modelages du corps</h3><span class="num">IV</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Un temps de détente pour relâcher les tensions et retrouver une sensation de légèreté.</p>
+        </article>
+        <!-- V -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Mains &amp; pieds</h3><span class="num">V</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Beauté des mains et des pieds, soin et finition soignée pour des extrémités impeccables.</p>
+        </article>
+        <!-- VI -->
+        <article class="rite p-6 md:p-7" data-reveal data-rite>
+          <div class="flex items-start justify-between"><h3 class="h3 text-ink pr-3">Regard &amp; maquillage</h3><span class="num">VI</span></div>
+          <p class="mt-3 text-[.95rem] leading-relaxed text-ink-2">Sourcils dessinés, regard mis en valeur, maquillage qui sublime sans masquer.</p>
+        </article>
+      </div>
+
+      <p class="mt-10 text-center text-[.78rem] tracking-[.18em] uppercase text-ink-2" data-reveal>
+        Soins composés sur rendez-vous · Appelez Delphine pour votre conseil
+      </p>
+    </div>
+  </section>
+
+  <!-- LUMIERE AMBIANCE (bandeau image) -->
+  <section class="relative py-12 md:py-16 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-6xl mx-auto">
+      <div class="light-veil"></div>
+      <div class="medallion section-medallion relative rounded-[14px] overflow-hidden h-[52vh] min-h-[320px] md:h-[60vh]" data-reveal>
+        <img src="./assets/images/ambiance-spa.jpg" alt="Ambiance spa et bien-être, lumière naturelle douce"/>
+        <span class="veil"></span>
+        <div class="scrim"></div>
+        <div class="on-photo absolute inset-0 z-10 flex flex-col items-center justify-end text-center px-6 pb-9">
+          <p class="eyebrow" style="color:#FFF7EC;">L'écrin</p>
+          <p class="font-script italic mt-2" style="font-size:clamp(1.5rem,4.5vw,2.4rem); line-height:1.2;">
+            À la Villa St Joseph, la lumière entre par le jardin.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS / SAVOIR-FAIRE -->
+  <section class="relative py-16 md:py-24 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+      <div class="light-veil"></div>
+      <div class="md:col-span-7 md:order-1 order-2" data-reveal>
+        <p class="eyebrow">Le savoir-faire</p>
+        <h2 class="h2 mt-3 sweep dewy">Des soins choisis avec soin</h2>
+        <div class="rule-gold mt-5 max-w-[180px]"><span class="dot"></span><span class="line"></span></div>
+        <p class="mt-6 text-[1.05rem] leading-relaxed text-ink/90">
+          Les produits et les protocoles sont sélectionnés avec exigence, pour leur efficacité et leur douceur. Des soins techniques, comme la microdermabrasion, complètent les soins du visage classiques pour répondre à chaque type de peau.
+        </p>
+        <p class="mt-4 text-[1.05rem] leading-relaxed text-ink/90">
+          Le résultat recherché reste toujours le même : une peau saine, fraîche et lumineuse, et la sensation d'avoir pris du temps pour soi.
+        </p>
+      </div>
+      <div class="md:col-span-5 md:order-2 order-1 relative" data-reveal>
+        <div class="halo" style="inset:-10% -6%;"></div>
+        <div class="medallion section-medallion relative aspect-[2/3] rounded-[10px] max-w-[360px] mx-auto">
+          <img src="./assets/images/produits-cosmetiques.jpg" alt="Produits de soin sur étagère lumineuse"/>
+          <span class="veil"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANCE -->
+  <section class="relative py-20 md:py-28 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-3xl mx-auto text-center">
+      <div class="light-veil"></div>
+      <div class="halo" style="width:min(560px,95vw); height:420px; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
+      <div class="relative">
+        <p class="eyebrow" data-reveal>La confiance de ses clientes</p>
+        <p class="font-script italic dewy mt-4" style="color:var(--gold); font-weight:400; font-size:clamp(4rem,16vw,8rem); line-height:.9;" data-reveal>4,9<span class="text-ink-2" style="font-size:.32em; font-style:normal; font-family:'Manrope',sans-serif;">/5</span></p>
+        <p class="mt-3 text-[.82rem] tracking-[.22em] uppercase text-ink-2" data-reveal>16 avis 5 étoiles sur Google</p>
+
+        <div class="mt-12 grid gap-8 sm:grid-cols-3 text-left">
+          <blockquote class="relative" data-reveal>
+            <p class="font-script italic text-ink leading-snug" style="font-size:1.3rem;">« Un accueil chaleureux et des soins d'une grande qualité. »</p>
+          </blockquote>
+          <blockquote class="relative" data-reveal>
+            <p class="font-script italic text-ink leading-snug" style="font-size:1.3rem;">« Un cadre intimiste où l'on se sent tout de suite à l'aise. »</p>
+          </blockquote>
+          <blockquote class="relative" data-reveal>
+            <p class="font-script italic text-ink leading-snug" style="font-size:1.3rem;">« Delphine est à l'écoute, on ressort détendue et rayonnante. »</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENIR -->
+  <section id="infos" class="relative py-16 md:py-24 px-5 overflow-hidden">
+    <div class="reveal-wrap relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-stretch">
+      <div class="light-veil"></div>
+      <div class="relative" data-reveal>
+        <div class="halo" style="width:380px; height:380px; top:-10%; left:-10%;"></div>
+        <div class="relative">
+          <p class="eyebrow">Venir à l'institut</p>
+          <h2 class="h2 mt-3 sweep dewy">Villa St Joseph</h2>
+          <div class="rule-gold mt-5 max-w-[160px]"><span class="dot"></span><span class="line"></span></div>
+
+          <div class="mt-7 space-y-6">
+            <div>
+              <p class="text-[.74rem] tracking-[.2em] uppercase text-ink-2">Adresse</p>
+              <p class="mt-1 text-[1.05rem] leading-relaxed text-ink">Villa St Joseph, Chemin de Marinacce,<br/>Route Royale, 20600 Bastia</p>
+            </div>
+            <div>
+              <p class="text-[.74rem] tracking-[.2em] uppercase text-ink-2">Horaires</p>
+              <p class="mt-1 text-[1.05rem] leading-relaxed text-ink" style="font-weight:500;">Du lundi au vendredi, 9h00 à 18h00</p>
+              <p class="text-[.95rem] text-ink-2">Samedi et dimanche : fermé</p>
+            </div>
+            <div>
+              <p class="text-[.74rem] tracking-[.2em] uppercase text-ink-2">Rendez-vous</p>
+              <a href="tel:+33666638821" class="mt-1 inline-block font-script italic dewy ul-gold" style="color:var(--gold); font-size:clamp(2rem,7vw,2.8rem); line-height:1;">06 66 63 88 21</a>
+            </div>
+          </div>
+
+          <a href="tel:+33666638821" class="btn-gold mt-9"><span aria-hidden="true">✦</span> Prendre rendez-vous</a>
+        </div>
+      </div>
+
+      <div class="relative" data-reveal>
+        <div class="rounded-[14px] overflow-hidden border" style="border-color:rgba(184,155,110,.55); box-shadow:0 18px 44px rgba(46,58,54,.10);">
+          <iframe
+            title="Carte : Delphine Beauté, Villa St Joseph, Route Royale, Bastia"
+            src="https://maps.google.com/maps?q=42.6834044,9.424087199999999&z=15&output=embed"
+            width="100%" height="100%" loading="lazy"
+            style="border:0; min-height:360px; display:block; filter:grayscale(.15) brightness(1.03) contrast(.97);"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="relative py-20 px-5 overflow-hidden text-center">
+  <div class="halo" style="width:min(620px,100vw); height:420px; top:-30%; left:50%; transform:translateX(-50%);"></div>
+  <div class="relative max-w-2xl mx-auto">
+    <p class="font-script italic dewy text-ink" style="font-weight:300; font-size:clamp(2.4rem,8vw,4rem); line-height:1;" data-reveal>Delphine Beauté</p>
+    <div class="rule-gold mx-auto mt-6 max-w-[180px]" data-reveal><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+    <p class="mt-6 text-[.92rem] text-ink-2 leading-relaxed" data-reveal>
+      Villa St Joseph, Route Royale, 20600 Bastia<br/>
+      Du lundi au vendredi, 9h00 à 18h00 ·
+      <a href="tel:+33666638821" class="ul-gold" style="color:var(--gold);">06 66 63 88 21</a>
+    </p>
+    <p class="mt-10 text-[11px] tracking-[.12em] uppercase text-ink-2/80" data-reveal>Site réalisé par SpeedPost.fr</p>
+  </div>
+</footer>
+
+<script type="module">
+  document.documentElement.classList.add('js-ready');
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let animate, inView, scroll, Lenis;
+  try {
+    ({ animate, inView, scroll } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'));
+    Lenis = (await import('https://cdn.jsdelivr.net/npm/lenis@1.1.13/+esm')).default;
+  } catch(e) { /* filet CSS prend le relais */ }
+
+  // chargement : retrait du voile de lumière
+  const loadveil = document.getElementById('loadveil');
+  const heroName = document.getElementById('heroname');
+  function lift(){
+    if (loadveil){
+      if (reduce){ loadveil.style.display='none'; }
+      else {
+        loadveil.animate(
+          [{ transform:'translateY(0)' },{ transform:'translateY(-101%)' }],
+          { duration:1100, easing:'cubic-bezier(.22,.61,.36,1)', fill:'forwards' }
+        );
+        setTimeout(()=>{ loadveil.style.display='none'; }, 1150);
+      }
+    }
+    document.querySelectorAll('.hero-medallion').forEach(m=>m.classList.add('revealed'));
+    setTimeout(()=>{ heroName && heroName.classList.add('swept'); }, reduce?0:650);
+  }
+  window.addEventListener('load', lift, { once:true });
+  setTimeout(lift, 1600); // filet si load déjà passé
+
+  if (Lenis && !reduce){
+    const lenis = new Lenis({ lerp:0.08 });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t){ e.preventDefault(); lenis.scrollTo(t, { offset:-70 }); }
+      });
+    });
+  }
+
+  if (inView && animate){
+    // entrées scroll
+    inView('[data-reveal]', (el)=>{
+      animate(el, { opacity:[0,1], transform:['translateY(16px)','translateY(0)'] },
+              { duration:0.55, easing:[0.2,0.7,0.2,1] });
+    }, { amount:0.15 });
+
+    // voile de lumière par section + medaillons + sweep h2
+    inView('.reveal-wrap', (el)=>{
+      el.classList.add('opened');
+      el.querySelectorAll('.section-medallion').forEach(m=>m.classList.add('revealed'));
+      el.querySelectorAll('.sweep').forEach(s=>{ setTimeout(()=>s.classList.add('swept'), 250); });
+    }, { amount:0.2 });
+
+    // parallax doux médaillon hero
+    const hero = document.querySelector('#hero-image');
+    if (hero && scroll && !reduce){
+      scroll(animate(hero, { transform:['translateY(-3%)','translateY(3%)'] }, { easing:'linear' }),
+             { target: hero.closest('section'), offset:['start end','end start'] });
+    }
+  } else {
+    // sans Motion : ouvrir tout
+    document.querySelectorAll('.reveal-wrap').forEach(w=>{
+      w.classList.add('opened');
+      w.querySelectorAll('.section-medallion').forEach(m=>m.classList.add('revealed'));
+    });
+  }
+
+  // nav hide/show + solid
+  const nav = document.getElementById('nav');
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    nav.classList.toggle('solid', y > 40);
+    if (y > lastY && y > 200) nav.classList.add('hide'); else nav.classList.remove('hide');
+    lastY = y;
+  }, { passive:true });
+
+  // spot de lumière suiveur (desktop only, lerp paresseux)
+  const spot = document.getElementById('lightspot');
+  if (spot && !reduce && window.matchMedia('(min-width:1024px)').matches && window.matchMedia('(pointer:fine)').matches){
+    let tx=window.innerWidth/2, ty=window.innerHeight/2, cx=tx, cy=ty, on=false;
+    window.addEventListener('mousemove', e=>{ tx=e.clientX; ty=e.clientY; if(!on){ on=true; spot.style.opacity='1'; } });
+    (function loop(){
+      cx += (tx-cx)*0.12; cy += (ty-cy)*0.12;
+      spot.style.transform = `translate(${cx}px, ${cy}px)`;
+      requestAnimationFrame(loop);
+    })();
+  }
+</script>
+</body>
+</html>
